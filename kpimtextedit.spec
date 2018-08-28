@@ -6,7 +6,7 @@
 #
 Name     : kpimtextedit
 Version  : 18.08.0
-Release  : 1
+Release  : 2
 URL      : https://download.kde.org/stable/applications/18.08.0/src/kpimtextedit-18.08.0.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.08.0/src/kpimtextedit-18.08.0.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.08.0/src/kpimtextedit-18.08.0.tar.xz.sig
@@ -16,6 +16,7 @@ License  : LGPL-2.1
 Requires: kpimtextedit-lib
 Requires: kpimtextedit-license
 Requires: kpimtextedit-locales
+Requires: kpimtextedit-data
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : grantlee-dev
@@ -25,10 +26,19 @@ BuildRequires : syntax-highlighting-dev
 %description
 No detailed description available
 
+%package data
+Summary: data components for the kpimtextedit package.
+Group: Data
+
+%description data
+data components for the kpimtextedit package.
+
+
 %package dev
 Summary: dev components for the kpimtextedit package.
 Group: Development
 Requires: kpimtextedit-lib
+Requires: kpimtextedit-data
 Provides: kpimtextedit-devel
 
 %description dev
@@ -38,6 +48,7 @@ dev components for the kpimtextedit package.
 %package lib
 Summary: lib components for the kpimtextedit package.
 Group: Libraries
+Requires: kpimtextedit-data
 Requires: kpimtextedit-license
 
 %description lib
@@ -68,7 +79,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535222349
+export SOURCE_DATE_EPOCH=1535431935
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -76,7 +87,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535222349
+export SOURCE_DATE_EPOCH=1535431935
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kpimtextedit
 cp COPYING.LIB %{buildroot}/usr/share/doc/kpimtextedit/COPYING.LIB
@@ -87,6 +98,10 @@ popd
 
 %files
 %defattr(-,root,root,-)
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/xdg/kpimtextedit.categories
 
 %files dev
 %defattr(-,root,root,-)
