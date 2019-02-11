@@ -5,22 +5,22 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kpimtextedit
-Version  : 18.08.0
-Release  : 2
-URL      : https://download.kde.org/stable/applications/18.08.0/src/kpimtextedit-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/kpimtextedit-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/kpimtextedit-18.08.0.tar.xz.sig
+Version  : 18.12.2
+Release  : 3
+URL      : https://download.kde.org/stable/applications/18.12.2/src/kpimtextedit-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/kpimtextedit-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/kpimtextedit-18.12.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
-Requires: kpimtextedit-lib
-Requires: kpimtextedit-license
-Requires: kpimtextedit-locales
-Requires: kpimtextedit-data
+Requires: kpimtextedit-data = %{version}-%{release}
+Requires: kpimtextedit-lib = %{version}-%{release}
+Requires: kpimtextedit-license = %{version}-%{release}
+Requires: kpimtextedit-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : grantlee-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 BuildRequires : syntax-highlighting-dev
 
 %description
@@ -37,9 +37,9 @@ data components for the kpimtextedit package.
 %package dev
 Summary: dev components for the kpimtextedit package.
 Group: Development
-Requires: kpimtextedit-lib
-Requires: kpimtextedit-data
-Provides: kpimtextedit-devel
+Requires: kpimtextedit-lib = %{version}-%{release}
+Requires: kpimtextedit-data = %{version}-%{release}
+Provides: kpimtextedit-devel = %{version}-%{release}
 
 %description dev
 dev components for the kpimtextedit package.
@@ -48,8 +48,8 @@ dev components for the kpimtextedit package.
 %package lib
 Summary: lib components for the kpimtextedit package.
 Group: Libraries
-Requires: kpimtextedit-data
-Requires: kpimtextedit-license
+Requires: kpimtextedit-data = %{version}-%{release}
+Requires: kpimtextedit-license = %{version}-%{release}
 
 %description lib
 lib components for the kpimtextedit package.
@@ -72,25 +72,25 @@ locales components for the kpimtextedit package.
 
 
 %prep
-%setup -q -n kpimtextedit-18.08.0
+%setup -q -n kpimtextedit-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535431935
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549859513
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535431935
+export SOURCE_DATE_EPOCH=1549859513
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/kpimtextedit
-cp COPYING.LIB %{buildroot}/usr/share/doc/kpimtextedit/COPYING.LIB
+mkdir -p %{buildroot}/usr/share/package-licenses/kpimtextedit
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kpimtextedit/COPYING.LIB
 pushd clr-build
 %make_install
 popd
@@ -108,8 +108,6 @@ popd
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/AbstractTextToSpeechInterface
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/EditorUtil
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/EmoticonTextEditAction
-/usr/include/KF5/KPIMTextEdit/KPIMTextEdit/InsertHtmlDialog
-/usr/include/KF5/KPIMTextEdit/KPIMTextEdit/InsertImageDialog
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/InsertImageWidget
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/InsertTableDialog
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/InsertTableWidget
@@ -140,11 +138,8 @@ popd
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TextToSpeechWidget
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TextUtils
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/abstracttexttospeechinterface.h
-/usr/include/KF5/KPIMTextEdit/kpimtextedit/config-kpimtextedit.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/editorutil.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/emoticontexteditaction.h
-/usr/include/KF5/KPIMTextEdit/kpimtextedit/inserthtmldialog.h
-/usr/include/KF5/KPIMTextEdit/kpimtextedit/insertimagedialog.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/insertimagewidget.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/inserttabledialog.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/inserttablewidget.h
@@ -186,12 +181,12 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5PimTextEdit.so.5
-/usr/lib64/libKF5PimTextEdit.so.5.9.0
+/usr/lib64/libKF5PimTextEdit.so.5.10.2
 /usr/lib64/qt5/plugins/designer/kpimtexteditwidgets.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/kpimtextedit/COPYING.LIB
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/kpimtextedit/COPYING.LIB
 
 %files locales -f libkpimtextedit.lang
 %defattr(-,root,root,-)
