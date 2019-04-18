@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kpimtextedit
-Version  : 18.12.3
-Release  : 6
-URL      : https://download.kde.org/stable/applications/18.12.3/src/kpimtextedit-18.12.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.3/src/kpimtextedit-18.12.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.3/src/kpimtextedit-18.12.3.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 19.04.0
+Release  : 7
+URL      : https://download.kde.org/stable/applications/19.04.0/src/kpimtextedit-19.04.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.0/src/kpimtextedit-19.04.0.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.0/src/kpimtextedit-19.04.0.tar.xz.sig
+Summary  : A textedit with PIM-specific features
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: kpimtextedit-data = %{version}-%{release}
@@ -40,6 +40,7 @@ Group: Development
 Requires: kpimtextedit-lib = %{version}-%{release}
 Requires: kpimtextedit-data = %{version}-%{release}
 Provides: kpimtextedit-devel = %{version}-%{release}
+Requires: kpimtextedit = %{version}-%{release}
 
 %description dev
 dev components for the kpimtextedit package.
@@ -72,23 +73,22 @@ locales components for the kpimtextedit package.
 
 
 %prep
-%setup -q -n kpimtextedit-18.12.3
+%setup -q -n kpimtextedit-19.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552005330
+export SOURCE_DATE_EPOCH=1555619153
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1552005330
+export SOURCE_DATE_EPOCH=1555619153
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kpimtextedit
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kpimtextedit/COPYING.LIB
@@ -108,10 +108,7 @@ popd
 %defattr(-,root,root,-)
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/AbstractTextToSpeechInterface
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/EditorUtil
-/usr/include/KF5/KPIMTextEdit/KPIMTextEdit/EmoticonTextEditAction
-/usr/include/KF5/KPIMTextEdit/KPIMTextEdit/InsertImageWidget
-/usr/include/KF5/KPIMTextEdit/KPIMTextEdit/InsertTableDialog
-/usr/include/KF5/KPIMTextEdit/KPIMTextEdit/InsertTableWidget
+/usr/include/KF5/KPIMTextEdit/KPIMTextEdit/EmoticonUnicodeTab
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/PlainTextEditFindBar
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/PlainTextEditor
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/PlainTextEditorWidget
@@ -127,9 +124,6 @@ popd
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/RichTextExternalComposer
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/SelectSpecialCharDialog
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/SlideContainer
-/usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TableActionMenu
-/usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TableCellFormatDialog
-/usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TableFormatDialog
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TextEditFindBarBase
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TextEditorCompleter
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TextGotoLineWidget
@@ -140,10 +134,7 @@ popd
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TextUtils
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/abstracttexttospeechinterface.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/editorutil.h
-/usr/include/KF5/KPIMTextEdit/kpimtextedit/emoticontexteditaction.h
-/usr/include/KF5/KPIMTextEdit/kpimtextedit/insertimagewidget.h
-/usr/include/KF5/KPIMTextEdit/kpimtextedit/inserttabledialog.h
-/usr/include/KF5/KPIMTextEdit/kpimtextedit/inserttablewidget.h
+/usr/include/KF5/KPIMTextEdit/kpimtextedit/emoticonunicodetab.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/kpimtextedit_export.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/plaintexteditfindbar.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/plaintexteditor.h
@@ -160,9 +151,6 @@ popd
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/richtextexternalcomposer.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/selectspecialchardialog.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/slidecontainer.h
-/usr/include/KF5/KPIMTextEdit/kpimtextedit/tableactionmenu.h
-/usr/include/KF5/KPIMTextEdit/kpimtextedit/tablecellformatdialog.h
-/usr/include/KF5/KPIMTextEdit/kpimtextedit/tableformatdialog.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/texteditfindbarbase.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/texteditorcompleter.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/textgotolinewidget.h
@@ -182,7 +170,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5PimTextEdit.so.5
-/usr/lib64/libKF5PimTextEdit.so.5.10.3
+/usr/lib64/libKF5PimTextEdit.so.5.11.0
 /usr/lib64/qt5/plugins/designer/kpimtexteditwidgets.so
 
 %files license
