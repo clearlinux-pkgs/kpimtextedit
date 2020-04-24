@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kpimtextedit
-Version  : 19.12.3
-Release  : 19
-URL      : https://download.kde.org/stable/release-service/19.12.3/src/kpimtextedit-19.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/19.12.3/src/kpimtextedit-19.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/19.12.3/src/kpimtextedit-19.12.3.tar.xz.sig
+Version  : 20.04.0
+Release  : 20
+URL      : https://download.kde.org/stable/release-service/20.04.0/src/kpimtextedit-20.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.0/src/kpimtextedit-20.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.0/src/kpimtextedit-20.04.0.tar.xz.sig
 Summary  : A textedit with PIM-specific features
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -74,15 +74,15 @@ locales components for the kpimtextedit package.
 
 
 %prep
-%setup -q -n kpimtextedit-19.12.3
-cd %{_builddir}/kpimtextedit-19.12.3
+%setup -q -n kpimtextedit-20.04.0
+cd %{_builddir}/kpimtextedit-20.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583453737
+export SOURCE_DATE_EPOCH=1587694837
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -99,10 +99,10 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1583453737
+export SOURCE_DATE_EPOCH=1587694837
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kpimtextedit
-cp %{_builddir}/kpimtextedit-19.12.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/kpimtextedit/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kpimtextedit-20.04.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kpimtextedit/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
@@ -123,6 +123,7 @@ popd
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/PlainTextEditFindBar
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/PlainTextEditor
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/PlainTextEditorWidget
+/usr/include/KF5/KPIMTextEdit/KPIMTextEdit/PlainTextMarkupBuilder
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/PlainTextSyntaxSpellCheckingHighlighter
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/RichTextComposer
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/RichTextComposerActions
@@ -138,6 +139,7 @@ popd
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TextEditFindBarBase
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TextEditorCompleter
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TextGotoLineWidget
+/usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TextHTMLBuilder
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TextToSpeech
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TextToSpeechActions
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/TextToSpeechInterface
@@ -150,6 +152,7 @@ popd
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/plaintexteditfindbar.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/plaintexteditor.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/plaintexteditorwidget.h
+/usr/include/KF5/KPIMTextEdit/kpimtextedit/plaintextmarkupbuilder.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/plaintextsyntaxspellcheckinghighlighter.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/richtextcomposer.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/richtextcomposeractions.h
@@ -165,6 +168,7 @@ popd
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/texteditfindbarbase.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/texteditorcompleter.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/textgotolinewidget.h
+/usr/include/KF5/KPIMTextEdit/kpimtextedit/texthtmlbuilder.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/texttospeech.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/texttospeechactions.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/texttospeechinterface.h
@@ -181,7 +185,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5PimTextEdit.so.5
-/usr/lib64/libKF5PimTextEdit.so.5.13.3
+/usr/lib64/libKF5PimTextEdit.so.5.14.0
 /usr/lib64/qt5/plugins/designer/kpimtexteditwidgets.so
 
 %files license
