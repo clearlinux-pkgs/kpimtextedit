@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kpimtextedit
-Version  : 20.04.0
-Release  : 20
-URL      : https://download.kde.org/stable/release-service/20.04.0/src/kpimtextedit-20.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.0/src/kpimtextedit-20.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.0/src/kpimtextedit-20.04.0.tar.xz.sig
-Summary  : A textedit with PIM-specific features
+Version  : 20.04.1
+Release  : 21
+URL      : https://download.kde.org/stable/release-service/20.04.1/src/kpimtextedit-20.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.1/src/kpimtextedit-20.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.1/src/kpimtextedit-20.04.1.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: kpimtextedit-data = %{version}-%{release}
@@ -19,8 +19,20 @@ Requires: kpimtextedit-license = %{version}-%{release}
 Requires: kpimtextedit-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules-data
 BuildRequires : grantlee-dev
+BuildRequires : kcodecs-dev
+BuildRequires : kconfig-dev
+BuildRequires : kconfigwidgets-dev
+BuildRequires : kcoreaddons-dev
+BuildRequires : ki18n-dev
+BuildRequires : kiconthemes-dev
+BuildRequires : kio-dev
+BuildRequires : ktextwidgets-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kxmlgui-dev
 BuildRequires : qtbase-dev mesa-dev
+BuildRequires : sonnet-dev
 BuildRequires : syntax-highlighting-dev
 
 %description
@@ -40,7 +52,6 @@ Group: Development
 Requires: kpimtextedit-lib = %{version}-%{release}
 Requires: kpimtextedit-data = %{version}-%{release}
 Provides: kpimtextedit-devel = %{version}-%{release}
-Requires: kpimtextedit = %{version}-%{release}
 Requires: kpimtextedit = %{version}-%{release}
 
 %description dev
@@ -74,35 +85,34 @@ locales components for the kpimtextedit package.
 
 
 %prep
-%setup -q -n kpimtextedit-20.04.0
-cd %{_builddir}/kpimtextedit-20.04.0
+%setup -q -n kpimtextedit-20.04.1
+cd %{_builddir}/kpimtextedit-20.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1587694837
+export SOURCE_DATE_EPOCH=1589840082
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1587694837
+export SOURCE_DATE_EPOCH=1589840082
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kpimtextedit
-cp %{_builddir}/kpimtextedit-20.04.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kpimtextedit/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kpimtextedit-20.04.1/COPYING.LIB %{buildroot}/usr/share/package-licenses/kpimtextedit/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
@@ -120,6 +130,7 @@ popd
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/AbstractTextToSpeechInterface
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/EditorUtil
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/EmoticonUnicodeTab
+/usr/include/KF5/KPIMTextEdit/KPIMTextEdit/MarkupDirector
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/PlainTextEditFindBar
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/PlainTextEditor
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/PlainTextEditorWidget
@@ -149,6 +160,7 @@ popd
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/editorutil.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/emoticonunicodetab.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/kpimtextedit_export.h
+/usr/include/KF5/KPIMTextEdit/kpimtextedit/markupdirector.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/plaintexteditfindbar.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/plaintexteditor.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/plaintexteditorwidget.h
@@ -185,7 +197,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5PimTextEdit.so.5
-/usr/lib64/libKF5PimTextEdit.so.5.14.0
+/usr/lib64/libKF5PimTextEdit.so.5.14.1
 /usr/lib64/qt5/plugins/designer/kpimtexteditwidgets.so
 
 %files license
