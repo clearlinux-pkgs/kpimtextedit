@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kpimtextedit
-Version  : 20.04.2
-Release  : 22
-URL      : https://download.kde.org/stable/release-service/20.04.2/src/kpimtextedit-20.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.2/src/kpimtextedit-20.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.2/src/kpimtextedit-20.04.2.tar.xz.sig
+Version  : 20.08.0
+Release  : 23
+URL      : https://download.kde.org/stable/release-service/20.08.0/src/kpimtextedit-20.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.08.0/src/kpimtextedit-20.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.08.0/src/kpimtextedit-20.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -20,7 +20,6 @@ Requires: kpimtextedit-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
-BuildRequires : grantlee-dev
 BuildRequires : kcodecs-dev
 BuildRequires : kconfig-dev
 BuildRequires : kconfigwidgets-dev
@@ -85,15 +84,15 @@ locales components for the kpimtextedit package.
 
 
 %prep
-%setup -q -n kpimtextedit-20.04.2
-cd %{_builddir}/kpimtextedit-20.04.2
+%setup -q -n kpimtextedit-20.08.0
+cd %{_builddir}/kpimtextedit-20.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1591895357
+export SOURCE_DATE_EPOCH=1597731976
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -105,14 +104,14 @@ export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1591895357
+export SOURCE_DATE_EPOCH=1597731976
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kpimtextedit
-cp %{_builddir}/kpimtextedit-20.04.2/COPYING.LIB %{buildroot}/usr/share/package-licenses/kpimtextedit/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kpimtextedit-20.08.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kpimtextedit/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
@@ -143,6 +142,7 @@ popd
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/RichTextComposerEmailQuoteHighlighter
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/RichTextComposerImages
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/RichTextComposerWidget
+/usr/include/KF5/KPIMTextEdit/KPIMTextEdit/RichTextEditFindBar
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/RichTextEditor
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/RichTextEditorWidget
 /usr/include/KF5/KPIMTextEdit/KPIMTextEdit/RichTextExternalComposer
@@ -174,6 +174,7 @@ popd
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/richtextcomposeremailquotehighlighter.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/richtextcomposerimages.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/richtextcomposerwidget.h
+/usr/include/KF5/KPIMTextEdit/kpimtextedit/richtexteditfindbar.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/richtexteditor.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/richtexteditorwidget.h
 /usr/include/KF5/KPIMTextEdit/kpimtextedit/richtextexternalcomposer.h
@@ -199,7 +200,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5PimTextEdit.so.5
-/usr/lib64/libKF5PimTextEdit.so.5.14.2
+/usr/lib64/libKF5PimTextEdit.so.5.15.0
 /usr/lib64/qt5/plugins/designer/kpimtexteditwidgets.so
 
 %files license
