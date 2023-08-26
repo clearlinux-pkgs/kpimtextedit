@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kpimtextedit
-Version  : 23.04.3
-Release  : 58
-URL      : https://download.kde.org/stable/release-service/23.04.3/src/kpimtextedit-23.04.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.3/src/kpimtextedit-23.04.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.3/src/kpimtextedit-23.04.3.tar.xz.sig
+Version  : 23.08.0
+Release  : 59
+URL      : https://download.kde.org/stable/release-service/23.08.0/src/kpimtextedit-23.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.08.0/src/kpimtextedit-23.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.08.0/src/kpimtextedit-23.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -77,15 +77,15 @@ locales components for the kpimtextedit package.
 
 
 %prep
-%setup -q -n kpimtextedit-23.04.3
-cd %{_builddir}/kpimtextedit-23.04.3
+%setup -q -n kpimtextedit-23.08.0
+cd %{_builddir}/kpimtextedit-23.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1688846689
+export SOURCE_DATE_EPOCH=1693011250
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -118,7 +118,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1688846689
+export SOURCE_DATE_EPOCH=1693011250
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kpimtextedit
 cp %{_builddir}/kpimtextedit-%{version}/.krazy.license %{buildroot}/usr/share/package-licenses/kpimtextedit/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4 || :
@@ -156,7 +156,6 @@ popd
 %defattr(-,root,root,-)
 /usr/include/KPim5/KPIMTextEdit/KPIMTextEdit/AbstractMarkupBuilder
 /usr/include/KPim5/KPIMTextEdit/KPIMTextEdit/EditorUtil
-/usr/include/KPim5/KPIMTextEdit/KPIMTextEdit/EmoticonUnicodeTab
 /usr/include/KPim5/KPIMTextEdit/KPIMTextEdit/MarkupDirector
 /usr/include/KPim5/KPIMTextEdit/KPIMTextEdit/PlainTextEditFindBar
 /usr/include/KPim5/KPIMTextEdit/KPIMTextEdit/PlainTextEditor
@@ -182,7 +181,6 @@ popd
 /usr/include/KPim5/KPIMTextEdit/KPIMTextEdit/TextUtils
 /usr/include/KPim5/KPIMTextEdit/kpimtextedit/abstractmarkupbuilder.h
 /usr/include/KPim5/KPIMTextEdit/kpimtextedit/editorutil.h
-/usr/include/KPim5/KPIMTextEdit/kpimtextedit/emoticonunicodetab.h
 /usr/include/KPim5/KPIMTextEdit/kpimtextedit/kpimtextedit_export.h
 /usr/include/KPim5/KPIMTextEdit/kpimtextedit/markupdirector.h
 /usr/include/KPim5/KPIMTextEdit/kpimtextedit/plaintexteditfindbar.h
@@ -221,10 +219,10 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKPim5TextEdit.so.5.23.3
+/V3/usr/lib64/libKPim5TextEdit.so.5.24.0
 /V3/usr/lib64/qt5/plugins/designer/kpimtextedit5widgets.so
 /usr/lib64/libKPim5TextEdit.so.5
-/usr/lib64/libKPim5TextEdit.so.5.23.3
+/usr/lib64/libKPim5TextEdit.so.5.24.0
 /usr/lib64/qt5/plugins/designer/kpimtextedit5widgets.so
 
 %files license
