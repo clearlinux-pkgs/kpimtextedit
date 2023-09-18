@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kpimtextedit
-Version  : 23.08.0
-Release  : 59
-URL      : https://download.kde.org/stable/release-service/23.08.0/src/kpimtextedit-23.08.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.08.0/src/kpimtextedit-23.08.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.08.0/src/kpimtextedit-23.08.0.tar.xz.sig
+Version  : 23.08.1
+Release  : 60
+URL      : https://download.kde.org/stable/release-service/23.08.1/src/kpimtextedit-23.08.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.08.1/src/kpimtextedit-23.08.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.08.1/src/kpimtextedit-23.08.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -77,15 +77,15 @@ locales components for the kpimtextedit package.
 
 
 %prep
-%setup -q -n kpimtextedit-23.08.0
-cd %{_builddir}/kpimtextedit-23.08.0
+%setup -q -n kpimtextedit-23.08.1
+cd %{_builddir}/kpimtextedit-23.08.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1693011250
+export SOURCE_DATE_EPOCH=1695068031
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -118,7 +118,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1693011250
+export SOURCE_DATE_EPOCH=1695068031
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kpimtextedit
 cp %{_builddir}/kpimtextedit-%{version}/.krazy.license %{buildroot}/usr/share/package-licenses/kpimtextedit/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4 || :
@@ -219,10 +219,10 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKPim5TextEdit.so.5.24.0
+/V3/usr/lib64/libKPim5TextEdit.so.5.24.1
 /V3/usr/lib64/qt5/plugins/designer/kpimtextedit5widgets.so
 /usr/lib64/libKPim5TextEdit.so.5
-/usr/lib64/libKPim5TextEdit.so.5.24.0
+/usr/lib64/libKPim5TextEdit.so.5.24.1
 /usr/lib64/qt5/plugins/designer/kpimtextedit5widgets.so
 
 %files license
